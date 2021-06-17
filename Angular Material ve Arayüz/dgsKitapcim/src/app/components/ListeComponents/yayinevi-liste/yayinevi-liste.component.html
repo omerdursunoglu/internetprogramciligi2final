@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Yayınevi Bilgisi</h1>
+  <h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secYayinevi)">Düzenle</button>
+    &nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secYayinevi)">Sil</button>
+  </h3>
+
+  <h3><b>Yayinevi ID : </b>{{ secYayinevi?.yayineviId }}</h3>
+  <h3><b>Yayinevi Adı : </b>{{ secYayinevi?.yayineviId }}</h3>
+
+  <p>&nbsp;</p>
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/yayinevleri']">Geri</button>
+</div>
+

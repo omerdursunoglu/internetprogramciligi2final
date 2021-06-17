@@ -1,0 +1,97 @@
+<mat-toolbar color="primary">
+  <span>{{ dialogBaslik }}</span>
+</mat-toolbar>
+
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Ad:</mat-label>
+      <input
+        matInput
+        placeholder="Ad"
+        formControlName="musteriAdi"
+        name="musteriAdi"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Soyadı:</mat-label>
+      <input
+        matInput
+        placeholder="Soyadı"
+        formControlName="musteriSoyadi"
+        name="musteriSoyadi"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kullanıcı Adı:</mat-label>
+      <input
+        matInput
+        placeholder="Kullanıcı Adı"
+        formControlName="musteriKuladi"
+        name="musteriKuladi"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Şifre:</mat-label>
+      <input
+        matInput
+        placeholder="Şifre"
+        formControlName="musteriSifre"
+        name="musteriSifre"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Adres:</mat-label>
+      <input
+        matInput
+        placeholder="Adres"
+        formControlName="musteriAdres"
+        name="musteriAdres"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mail Adresi:</mat-label>
+      <input
+        matInput
+        placeholder="Mail Adresi"
+        formControlName="musteriMail"
+        name="musteriMail"
+        required
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Yetki:</mat-label>
+      <input
+        matInput
+        placeholder="Yetki"
+        formControlName="yetkilendirme"
+        name="yetkilendirme"
+        type="number"
+      />
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="frm.invalid"
+    (click)="dialogRef.close(frm.value)"
+  >
+    Kaydet</button
+  >&nbsp;
+  <button mat-stroked-button color="primary" (click)="dialogRef.close()">
+    İptal
+  </button>
+</div>

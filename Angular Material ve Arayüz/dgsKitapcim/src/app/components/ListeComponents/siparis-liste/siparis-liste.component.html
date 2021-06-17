@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Sipariş Bilgisi</h1>
+
+  <h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secSip)">Düzenle</button>
+    &nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secSip)">Sil</button>
+  </h3>
+
+  <h3><b>Sipariş ID : </b>{{ secSip?.siparisId }}</h3>
+  <h3><b>Sipariş Müşteri ID : </b>{{ secSip?.siparisMusteriId }}</h3>
+  <h3><b>Sipariş Kodu : </b>{{ secSip?.siparisKodu }}</h3>
+  <h3><b>Sipariş Kitap ID : </b>{{ secSip?.siparisKitapId }}</h3>
+  <h3><b>Sipariş Tarihi : </b>{{ secSip?.siparisTarihi }}</h3>
+  <h3><b>Sipariş Müşteri Adı : </b>{{ secSip?.siparisMusteriAdi }}</h3>
+  <h3><b>Sipariş Müşteri Soyadı : </b>{{ secSip?.siparisMusteriSoyadi }}</h3>
+  <h3><b>Sipariş Müşteri Adres : </b>{{ secSip?.siparisMusteriAdres }}</h3>
+  <h3><b>Sipariş Müşteri Telefon : </b>{{ secSip?.siparisMusteriTelefon }}</h3>
+  <h3><b>Sipariş Müşteri Mail : </b>{{ secSip?.siparisMusteriMail }}</h3>
+  <h3><b>Sipariş Kitap Adı : </b>{{ secSip?.siparisKitapAdi }}</h3>
+  <h3><b>Sipariş Kitap Fiyatı : </b>{{ secSip?.siparisKitapFiyati }}</h3>
+  <h3><b>Sipariş Yayınevi Adi : </b>{{ secSip?.siparisYayineviAdi }}</h3>
+  <h3><b>Sipariş Müşteri Mail : </b>{{ secSip?.siparisMusteriMail }}</h3>
+
+  <p>&nbsp;</p>
+
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/siparisler']">Geri</button>
+</div>

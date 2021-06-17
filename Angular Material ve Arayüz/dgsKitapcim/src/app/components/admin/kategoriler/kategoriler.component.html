@@ -1,0 +1,71 @@
+<br>
+<div class="center">
+ <mat-card><h1 class="center">Kategoriler</h1></mat-card>
+ <br>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aramak istediğiniz kategoriyi buraya yazarak filtreleyebilirsiniz." (keyup)="UrunFiltrele($event)" />
+  </mat-form-field>
+
+  <p></p>
+
+  <button mat-raised-button color="primary" matTooltip="Kategori Ekle" (click)="Ekle()">Kategori Ekle</button>
+
+
+  <p>&nbsp;</p>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z10" matSort>
+
+    <ng-container matColumnDef="kategoriId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Kategori Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.kategoriId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kategoriAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Kategori Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{ kayit.kategoriAdi }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button
+          mat-icon-button
+          matTooltip="Detay"
+          [routerLink]="['/admin/kategoriliste', kayit.kategoriAdi]"
+        >
+          <mat-icon aria-label="label" color="primary">article</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Düzenle" (click)="Duzenle(kayit)">
+          <mat-icon aria-label="label" color="accent">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Sil" (click)="Sil(kayit)">
+          <mat-icon aria-label="label" color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 30]"
+    showFirstLastButtons
+    class="mat-elevation-z5"
+  >
+  </mat-paginator>
+  <p>&nbsp;</p>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<head>
+  <style>
+      .center {
+          text-align: center;
+      }
+  </style>
+  </head>
+  <body>

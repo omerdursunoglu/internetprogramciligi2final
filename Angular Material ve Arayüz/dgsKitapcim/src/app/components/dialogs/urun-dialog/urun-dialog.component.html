@@ -1,0 +1,84 @@
+<mat-toolbar color="primary">
+  <span>{{ dialogBaslik }}</span>
+</mat-toolbar>
+
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Kitap Adı</mat-label>
+      <input
+        matInput
+        placeholder="Kitap Adı"
+        formControlName="kitapAdi"
+        name="kitapAdi"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kitap Fiyatı</mat-label>
+      <input
+        matInput
+        placeholder="Kitap Fiyatı"
+        formControlName="kitapFiyat"
+        name="kitapFiyat"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kitap Sayfası</mat-label>
+      <input
+        matInput
+        placeholder="Kitap Sayfası"
+        formControlName="kitapSayfasi"
+        name="kitapSayfasi"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Yayınevi</mat-label>
+      <input
+        matInput
+        placeholder="Yayınevi"
+        formControlName="kitapYayineviId"
+        name="kitapYayineviId"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Basım Yılı</mat-label>
+      <input
+        matInput
+        placeholder="Basım Yılı"
+        formControlName="kitapBasim"
+        name="kitapBasim"
+        required
+        type="text"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kitap Kategori Adı</mat-label>
+      <mat-select formControlName="kitapKategoriId" placeholder="Kitap Kategori Adı">
+        <mat-option
+          [value]="kategori.kategoriId" *ngFor="let kategori of kategoriler">{{ kategori.kategoriId}} {{kategori.kategoriAdi}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Yayınevi</mat-label>
+      <mat-select formControlName="kitapYayineviId" placeholder="Ürün Kategori Adı">
+        <mat-option
+          [value]="yayinevi.yayineviId" *ngFor="let yayinevi of yayinevleri">{{ yayinevi.yayineviId}} {{yayinevi.yayineviAdi}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+  <button
+    mat-stroked-button    color="primary"    [disabled]="frm.invalid"    (click)="dialogRef.close(frm.value)">Kaydet</button
+  >&nbsp;
+  <button mat-stroked-button color="primary" (click)="dialogRef.close()">    İptal </button>
+</div>

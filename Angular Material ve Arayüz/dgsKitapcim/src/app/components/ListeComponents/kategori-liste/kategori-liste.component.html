@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Kategori Bilgisi</h1>
+
+  <h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secKategori)">Düzenle</button>
+    &nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secKategori)">Sil</button>
+  </h3>
+
+  <h3><b>Kategori ID : </b>{{ secKategori?.kategoriId }}</h3>
+  <h3><b>Kategori Adı : </b>{{ secKategori?.kategoriId }}</h3>
+  <h3><b>Kategori Kitap Sayısı : </b>{{ secKategori?.katUrunSay }}</h3>
+
+  <p>&nbsp;</p>
+
+
+
+
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/kategoriler']">Geri</button>
+</div>
+

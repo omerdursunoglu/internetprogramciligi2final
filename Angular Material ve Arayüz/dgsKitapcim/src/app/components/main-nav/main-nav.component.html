@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button>
+<mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+        </button>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img [src]="apiServis.siteUrl + '/Dosyalar/logom.png'"style="width: 180px;"/>
+      <span class="spacer"></span>
+      <button mat-raised-button color='red' [routerLink]="['/login']" *ngIf="!apiServis.oturumKontrol()" style="margin-left: auto;">Giriş</button>&nbsp;
+      <button mat-raised-button color='primary'  *ngIf="apiServis.oturumKontrol()" style="margin-left: auto;">{{kadi}}</button>&nbsp;
+      <button mat-raised-button color='primary' (click)="OturumKapat()" *ngIf="apiServis.oturumKontrol()">Çıkış</button>
+      <button mat-raised-button color='primary' matTooltip='Üye Ol' (click)="Ekle()" *ngIf="!apiServis.oturumKontrol()">Üye Ol</button>
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="apiServis.yetkiKontrol(['Admin'])" >
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['admin/urunler']">Kitaplar</button>
+        <button mat-menu-item [routerLink]="['admin/yayinevleri']">Yayınevleri</button>
+        <button mat-menu-item [routerLink]="['admin/siparisler']">Siparişler</button>
+        <button mat-menu-item [routerLink]="['admin/kategoriler']">Kategoriler</button>
+        <button mat-menu-item [routerLink]="['admin/uyeler']">Kullanıcılar</button>
+        <button mat-menu-item (click)="OturumKapat()" *ngIf="apiServis.oturumKontrol()">Çıkış</button>
+      </mat-menu>
+      </mat-toolbar-row>
+  </mat-toolbar>
+</mat-toolbar>
+<mat-sidenav-container>
+<mat-sidenav #sidenav opened="true" mode="side">
+
+  <mat-nav-list class="center">
+    <a mat-list-item [routerLink]="['']">Ana Sayfa</a>
+    <a mat-list-item [routerLink]="['paketler']">İndirimli Paketler</a>
+    <a mat-list-item [routerLink]="['rehberlik']">Rehberlik</a>
+    <a mat-list-item [routerLink]="['motivasyon']">Motivasyon Videoları</a>
+    <a mat-list-item [routerLink]="['bizeulasin']">Bize Ulaşın</a>
+  </mat-nav-list>
+</mat-sidenav>
+<mat-sidenav-content>
+
+<div style="height: 88 vh;">
+
+  <router-outlet>
+  </router-outlet></div>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
+
+<head>
+  <style>
+      .center {
+          text-align: center;
+      }
+  </style>
+  </head>
+  <body>
+

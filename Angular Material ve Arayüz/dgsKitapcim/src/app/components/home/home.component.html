@@ -1,0 +1,69 @@
+   <br>
+   <div class="center">
+    <mat-card><h1>Kitaplar</h1></mat-card>
+<mat-grid-list cols="1" rowHeight="300px">
+  <mat-grid-tile>
+    <img [src]="apiServis.siteUrl + '/Dosyalar/banner.png'"style="width: 1610px"/>
+    <br>
+
+  </mat-grid-tile>
+
+</mat-grid-list>
+<iframe src="https://free.timeanddate.com/countdown/i7uqo24p/n5168/cf12/cm0/cu5/ct0/cs0/ca0/co1/cr0/ss0/cac000/cpc000/pcfff/tcfff/fn3/fs225/szw320/szh135/tatDGS'ye%20Kalan%20S%C3%BCre/tac000/tptTime%20since%20Event%20started%20in/tpc000/iso2021-07-11T00:00:00" allowtransparency="true" frameborder="0" width="363" height="102"></iframe>
+
+
+
+<br>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aradığınız kitabı buraya yazarak filtreleyebilirsin." (keyup)="UrunFiltrele($event)"/>
+  </mat-form-field>
+
+  
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z10" matSort>
+  <ng-container matColumnDef="kitapResmi">
+    <mat-header-cell *matHeaderCellDef> Kitap Resmi
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit">
+      <img [src]="apiServis.siteUrl + '/Dosyalar/' + kayit.kitapResmi" style="width: 170px"/>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="kitapAdi" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Kitap Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.kitapAdi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="kitapFiyat">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Fiyat
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.kitapFiyat}} TL </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="kitapBasim">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Basım Yılı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.kitapBasim}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5,10, 20, 30]"
+    showFirstLastButtons
+    class="mat-elevation-z5"
+  >
+  </mat-paginator>
+</div>
+
+<head>
+  <style>
+      .center {
+          text-align: center;
+      }
+  </style>
+  </head>
+  <body>

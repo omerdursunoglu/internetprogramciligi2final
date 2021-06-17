@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>Kitap Resmi Güncelle</span>
+</mat-toolbar>
+<div class="container">
+  <div *ngIf="secUrun">
+    <h3><b>Ürün Id : </b> {{secUrun.kitapId}} <b>Ürün Adı : </b>{{secUrun.kitapAdi}} </h3>
+    <img [src]="apiServis.siteUrl +'/Dosyalar/'+ secUrun.kitapResmi" style="width: 100px;" />
+  </div>
+  <input type="file" hidden="true" #foto (change)="GorselSec($event)" onclick="this.value=null">
+  <button mat-stroked-button color="primary" (click)="foto.click()" accept=".jpg,.png">Resim Seçiniz</button>
+  <p>&nbsp;</p>
+  <img [src]="secilenGorsel" style="width: 250px;" />
+  <p>&nbsp;</p>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(urungorsel)" [disabled]="!secilenGorsel">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="dialogRef.close()" >İptal</button>
+
+</div>

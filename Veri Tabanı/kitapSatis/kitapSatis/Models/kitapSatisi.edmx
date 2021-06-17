@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KitapSatisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="kategori">
+          <Key>
+            <PropertyRef Name="kategoriId" />
+          </Key>
+          <Property Name="kategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kitaplar">
+          <Key>
+            <PropertyRef Name="kitapId" />
+          </Key>
+          <Property Name="kitapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kitapAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kitapFiyat" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="kitapSayfasi" Type="int" Nullable="false" />
+          <Property Name="kitapYayineviId" Type="int" Nullable="false" />
+          <Property Name="kitapBasim" Type="int" Nullable="false" />
+          <Property Name="kitapResmi" Type="text" Nullable="false" />
+          <Property Name="kitapKategoriId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="musteri">
+          <Key>
+            <PropertyRef Name="musteriId" />
+          </Key>
+          <Property Name="musteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriKuladi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriAdres" Type="text" Nullable="false" />
+          <Property Name="yetkilendirme" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siparis">
+          <Key>
+            <PropertyRef Name="siparisId" />
+          </Key>
+          <Property Name="siparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="siparisMusteriId" Type="int" Nullable="false" />
+          <Property Name="siparisKodu" Type="int" Nullable="false" />
+          <Property Name="siparisKitapId" Type="int" Nullable="false" />
+          <Property Name="siparisTarihi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="yayinevi">
+          <Key>
+            <PropertyRef Name="yayineviId" />
+          </Key>
+          <Property Name="yayineviId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yayineviAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_kitaplar_ToKategori">
+          <End Role="kategori" Type="Self.kategori" Multiplicity="1" />
+          <End Role="kitaplar" Type="Self.kitaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategori">
+              <PropertyRef Name="kategoriId" />
+            </Principal>
+            <Dependent Role="kitaplar">
+              <PropertyRef Name="kitapKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitaplar_ToYayinevi">
+          <End Role="yayinevi" Type="Self.yayinevi" Multiplicity="1" />
+          <End Role="kitaplar" Type="Self.kitaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinevi">
+              <PropertyRef Name="yayineviId" />
+            </Principal>
+            <Dependent Role="kitaplar">
+              <PropertyRef Name="kitapYayineviId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparis_ToKitaplar">
+          <End Role="kitaplar" Type="Self.kitaplar" Multiplicity="1" />
+          <End Role="siparis" Type="Self.siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kitaplar">
+              <PropertyRef Name="kitapId" />
+            </Principal>
+            <Dependent Role="siparis">
+              <PropertyRef Name="siparisKitapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparis_ToMusteri">
+          <End Role="musteri" Type="Self.musteri" Multiplicity="1" />
+          <End Role="siparis" Type="Self.siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="musteri">
+              <PropertyRef Name="musteriId" />
+            </Principal>
+            <Dependent Role="siparis">
+              <PropertyRef Name="siparisMusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KitapSatisDBModelStoreContainer">
+          <EntitySet Name="kategori" EntityType="Self.kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kitaplar" EntityType="Self.kitaplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="musteri" EntityType="Self.musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siparis" EntityType="Self.siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yayinevi" EntityType="Self.yayinevi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_kitaplar_ToKategori" Association="Self.FK_kitaplar_ToKategori">
+            <End Role="kategori" EntitySet="kategori" />
+            <End Role="kitaplar" EntitySet="kitaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitaplar_ToYayinevi" Association="Self.FK_kitaplar_ToYayinevi">
+            <End Role="yayinevi" EntitySet="yayinevi" />
+            <End Role="kitaplar" EntitySet="kitaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparis_ToKitaplar" Association="Self.FK_siparis_ToKitaplar">
+            <End Role="kitaplar" EntitySet="kitaplar" />
+            <End Role="siparis" EntitySet="siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparis_ToMusteri" Association="Self.FK_siparis_ToMusteri">
+            <End Role="musteri" EntitySet="musteri" />
+            <End Role="siparis" EntitySet="siparis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KitapSatisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KitapSatisDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kategori" EntityType="KitapSatisDBModel.kategori" />
+          <EntitySet Name="kitaplar" EntityType="KitapSatisDBModel.kitaplar" />
+          <EntitySet Name="musteri" EntityType="KitapSatisDBModel.musteri" />
+          <EntitySet Name="siparis" EntityType="KitapSatisDBModel.siparis" />
+          <EntitySet Name="yayinevi" EntityType="KitapSatisDBModel.yayinevi" />
+          <AssociationSet Name="FK_kitaplar_ToKategori" Association="KitapSatisDBModel.FK_kitaplar_ToKategori">
+            <End Role="kategori" EntitySet="kategori" />
+            <End Role="kitaplar" EntitySet="kitaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kitaplar_ToYayinevi" Association="KitapSatisDBModel.FK_kitaplar_ToYayinevi">
+            <End Role="yayinevi" EntitySet="yayinevi" />
+            <End Role="kitaplar" EntitySet="kitaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparis_ToKitaplar" Association="KitapSatisDBModel.FK_siparis_ToKitaplar">
+            <End Role="kitaplar" EntitySet="kitaplar" />
+            <End Role="siparis" EntitySet="siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siparis_ToMusteri" Association="KitapSatisDBModel.FK_siparis_ToMusteri">
+            <End Role="musteri" EntitySet="musteri" />
+            <End Role="siparis" EntitySet="siparis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="kategori">
+          <Key>
+            <PropertyRef Name="kategoriId" />
+          </Key>
+          <Property Name="kategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="kitaplar" Relationship="KitapSatisDBModel.FK_kitaplar_ToKategori" FromRole="kategori" ToRole="kitaplar" />
+        </EntityType>
+        <EntityType Name="kitaplar">
+          <Key>
+            <PropertyRef Name="kitapId" />
+          </Key>
+          <Property Name="kitapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kitapAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kitapFiyat" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="kitapSayfasi" Type="Int32" Nullable="false" />
+          <Property Name="kitapYayineviId" Type="Int32" Nullable="false" />
+          <Property Name="kitapBasim" Type="Int32" Nullable="false" />
+          <Property Name="kitapResmi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="kitapKategoriId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kategori" Relationship="KitapSatisDBModel.FK_kitaplar_ToKategori" FromRole="kitaplar" ToRole="kategori" />
+          <NavigationProperty Name="yayinevi" Relationship="KitapSatisDBModel.FK_kitaplar_ToYayinevi" FromRole="kitaplar" ToRole="yayinevi" />
+          <NavigationProperty Name="siparis" Relationship="KitapSatisDBModel.FK_siparis_ToKitaplar" FromRole="kitaplar" ToRole="siparis" />
+        </EntityType>
+        <EntityType Name="musteri">
+          <Key>
+            <PropertyRef Name="musteriId" />
+          </Key>
+          <Property Name="musteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriSoyadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriKuladi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriAdres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="yetkilendirme" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siparis" Relationship="KitapSatisDBModel.FK_siparis_ToMusteri" FromRole="musteri" ToRole="siparis" />
+        </EntityType>
+        <EntityType Name="siparis">
+          <Key>
+            <PropertyRef Name="siparisId" />
+          </Key>
+          <Property Name="siparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="siparisMusteriId" Type="Int32" Nullable="false" />
+          <Property Name="siparisKodu" Type="Int32" Nullable="false" />
+          <Property Name="siparisKitapId" Type="Int32" Nullable="false" />
+          <Property Name="siparisTarihi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="kitaplar" Relationship="KitapSatisDBModel.FK_siparis_ToKitaplar" FromRole="siparis" ToRole="kitaplar" />
+          <NavigationProperty Name="musteri" Relationship="KitapSatisDBModel.FK_siparis_ToMusteri" FromRole="siparis" ToRole="musteri" />
+        </EntityType>
+        <EntityType Name="yayinevi">
+          <Key>
+            <PropertyRef Name="yayineviId" />
+          </Key>
+          <Property Name="yayineviId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yayineviAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="kitaplar" Relationship="KitapSatisDBModel.FK_kitaplar_ToYayinevi" FromRole="yayinevi" ToRole="kitaplar" />
+        </EntityType>
+        <Association Name="FK_kitaplar_ToKategori">
+          <End Type="KitapSatisDBModel.kategori" Role="kategori" Multiplicity="1" />
+          <End Type="KitapSatisDBModel.kitaplar" Role="kitaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategori">
+              <PropertyRef Name="kategoriId" />
+            </Principal>
+            <Dependent Role="kitaplar">
+              <PropertyRef Name="kitapKategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kitaplar_ToYayinevi">
+          <End Type="KitapSatisDBModel.yayinevi" Role="yayinevi" Multiplicity="1" />
+          <End Type="KitapSatisDBModel.kitaplar" Role="kitaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinevi">
+              <PropertyRef Name="yayineviId" />
+            </Principal>
+            <Dependent Role="kitaplar">
+              <PropertyRef Name="kitapYayineviId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparis_ToKitaplar">
+          <End Type="KitapSatisDBModel.kitaplar" Role="kitaplar" Multiplicity="1" />
+          <End Type="KitapSatisDBModel.siparis" Role="siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kitaplar">
+              <PropertyRef Name="kitapId" />
+            </Principal>
+            <Dependent Role="siparis">
+              <PropertyRef Name="siparisKitapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siparis_ToMusteri">
+          <End Type="KitapSatisDBModel.musteri" Role="musteri" Multiplicity="1" />
+          <End Type="KitapSatisDBModel.siparis" Role="siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="musteri">
+              <PropertyRef Name="musteriId" />
+            </Principal>
+            <Dependent Role="siparis">
+              <PropertyRef Name="siparisMusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KitapSatisDBModelStoreContainer" CdmEntityContainer="KitapSatisDBEntities">
+          <EntitySetMapping Name="kategori">
+            <EntityTypeMapping TypeName="KitapSatisDBModel.kategori">
+              <MappingFragment StoreEntitySet="kategori">
+                <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+                <ScalarProperty Name="kategoriId" ColumnName="kategoriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kitaplar">
+            <EntityTypeMapping TypeName="KitapSatisDBModel.kitaplar">
+              <MappingFragment StoreEntitySet="kitaplar">
+                <ScalarProperty Name="kitapKategoriId" ColumnName="kitapKategoriId" />
+                <ScalarProperty Name="kitapResmi" ColumnName="kitapResmi" />
+                <ScalarProperty Name="kitapBasim" ColumnName="kitapBasim" />
+                <ScalarProperty Name="kitapYayineviId" ColumnName="kitapYayineviId" />
+                <ScalarProperty Name="kitapSayfasi" ColumnName="kitapSayfasi" />
+                <ScalarProperty Name="kitapFiyat" ColumnName="kitapFiyat" />
+                <ScalarProperty Name="kitapAdi" ColumnName="kitapAdi" />
+                <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="musteri">
+            <EntityTypeMapping TypeName="KitapSatisDBModel.musteri">
+              <MappingFragment StoreEntitySet="musteri">
+                <ScalarProperty Name="yetkilendirme" ColumnName="yetkilendirme" />
+                <ScalarProperty Name="musteriAdres" ColumnName="musteriAdres" />
+                <ScalarProperty Name="musteriSifre" ColumnName="musteriSifre" />
+                <ScalarProperty Name="musteriKuladi" ColumnName="musteriKuladi" />
+                <ScalarProperty Name="musteriMail" ColumnName="musteriMail" />
+                <ScalarProperty Name="musteriSoyadi" ColumnName="musteriSoyadi" />
+                <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+                <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siparis">
+            <EntityTypeMapping TypeName="KitapSatisDBModel.siparis">
+              <MappingFragment StoreEntitySet="siparis">
+                <ScalarProperty Name="siparisTarihi" ColumnName="siparisTarihi" />
+                <ScalarProperty Name="siparisKitapId" ColumnName="siparisKitapId" />
+                <ScalarProperty Name="siparisKodu" ColumnName="siparisKodu" />
+                <ScalarProperty Name="siparisMusteriId" ColumnName="siparisMusteriId" />
+                <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yayinevi">
+            <EntityTypeMapping TypeName="KitapSatisDBModel.yayinevi">
+              <MappingFragment StoreEntitySet="yayinevi">
+                <ScalarProperty Name="yayineviAdi" ColumnName="yayineviAdi" />
+                <ScalarProperty Name="yayineviId" ColumnName="yayineviId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

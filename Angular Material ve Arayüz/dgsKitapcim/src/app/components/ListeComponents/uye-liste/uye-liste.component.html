@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Müşteri Bilgisi</h1>
+
+<h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secUye)">Düzenle</button
+    >&nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secUye)">Sil</button>
+  </h3>
+
+  <h3><b>Müşteri ID : </b>{{ secUye?.musteriId }}</h3>
+  <h3><b>Müşteri Adı : </b>{{ secUye?.musteriAdi }}</h3>
+  <h3><b>Müşteri Soyadı : </b>{{ secUye?.musteriSoyadi }}</h3>
+  <h3><b>Müşteri Mail : </b>{{ secUye?.musteriMail }}</h3>
+  <h3><b>Kullanıcı Adı : </b>{{ secUye?.musteriKuladi }}</h3>
+  <h3><b>Müşteri Şifre : </b>{{ secUye?.musteriSifre }}</h3>
+  <h3><b>Adres : </b>{{ secUye?.musteriAdres }}</h3>
+  <h3><b>Yetkilendirme : </b>{{ secUye?.yetkilendirme }}</h3>
+
+  <p>&nbsp;</p>
+
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/uyeler']">
+    Geri
+  </button>
+</div>
+
+

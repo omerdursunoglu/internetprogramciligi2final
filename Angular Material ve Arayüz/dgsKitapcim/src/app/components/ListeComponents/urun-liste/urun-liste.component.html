@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Kitap Bilgisi</h1>
+
+  <h3>
+    <button mat-stroked-button color="primary" (click)="Duzenle(secUrun)">Düzenle</button>
+    &nbsp;
+    <button mat-stroked-button color="warn" (click)="Sil(secUrun)">Sil</button>
+  </h3>
+
+  <h3><img [src]="apiServis.siteUrl + '/Dosyalar/' + secUrun?.kitapResmi" style="width: 300px"/></h3>
+  <h3><b>Kitap ID : </b>{{ secUrun?.kitapId }}</h3>
+  <h3><b>Kitap Adı : </b>{{ secUrun?.kitapAdi }}</h3>
+  <h3><b>Kitap Fiyat : </b>{{ secUrun?.kitapFiyat }}</h3>
+  <h3><b>Kitap Sayfası : </b>{{ secUrun?.kitapSayfasi }}</h3>
+  <h3><b>Yayınevi ID : </b>{{ secUrun?.kitapYayineviId }}</h3>
+  <h3><b>Basım Tarihi : </b>{{ secUrun?.kitapBasim }}</h3>
+  <h3><b>Kitap Resmi : </b>{{ secUrun?.kitapResmi }}</h3>
+  <h3><b>Kitap Kategori ID : </b>{{ secUrun?.kitapKategoriId }}</h3>
+  <h3><b>Kitap Kategori Adı : </b>{{ secUrun?.kitapKategoriId }}</h3>
+
+  <p>&nbsp;</p>
+
+  <button mat-stroked-button color="primary" [routerLink]="['/admin/urunler']">Geri</button>
+</div>
+

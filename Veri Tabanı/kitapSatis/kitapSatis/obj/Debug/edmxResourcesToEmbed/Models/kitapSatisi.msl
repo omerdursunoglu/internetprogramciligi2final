@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KitapSatisDBModelStoreContainer" CdmEntityContainer="KitapSatisDBEntities">
+    <EntitySetMapping Name="kategori">
+      <EntityTypeMapping TypeName="KitapSatisDBModel.kategori">
+        <MappingFragment StoreEntitySet="kategori">
+          <ScalarProperty Name="kategoriAdi" ColumnName="kategoriAdi" />
+          <ScalarProperty Name="kategoriId" ColumnName="kategoriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kitaplar">
+      <EntityTypeMapping TypeName="KitapSatisDBModel.kitaplar">
+        <MappingFragment StoreEntitySet="kitaplar">
+          <ScalarProperty Name="kitapKategoriId" ColumnName="kitapKategoriId" />
+          <ScalarProperty Name="kitapResmi" ColumnName="kitapResmi" />
+          <ScalarProperty Name="kitapBasim" ColumnName="kitapBasim" />
+          <ScalarProperty Name="kitapYayineviId" ColumnName="kitapYayineviId" />
+          <ScalarProperty Name="kitapSayfasi" ColumnName="kitapSayfasi" />
+          <ScalarProperty Name="kitapFiyat" ColumnName="kitapFiyat" />
+          <ScalarProperty Name="kitapAdi" ColumnName="kitapAdi" />
+          <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="musteri">
+      <EntityTypeMapping TypeName="KitapSatisDBModel.musteri">
+        <MappingFragment StoreEntitySet="musteri">
+          <ScalarProperty Name="yetkilendirme" ColumnName="yetkilendirme" />
+          <ScalarProperty Name="musteriAdres" ColumnName="musteriAdres" />
+          <ScalarProperty Name="musteriSifre" ColumnName="musteriSifre" />
+          <ScalarProperty Name="musteriKuladi" ColumnName="musteriKuladi" />
+          <ScalarProperty Name="musteriMail" ColumnName="musteriMail" />
+          <ScalarProperty Name="musteriSoyadi" ColumnName="musteriSoyadi" />
+          <ScalarProperty Name="musteriAdi" ColumnName="musteriAdi" />
+          <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="siparis">
+      <EntityTypeMapping TypeName="KitapSatisDBModel.siparis">
+        <MappingFragment StoreEntitySet="siparis">
+          <ScalarProperty Name="siparisTarihi" ColumnName="siparisTarihi" />
+          <ScalarProperty Name="siparisKitapId" ColumnName="siparisKitapId" />
+          <ScalarProperty Name="siparisKodu" ColumnName="siparisKodu" />
+          <ScalarProperty Name="siparisMusteriId" ColumnName="siparisMusteriId" />
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yayinevi">
+      <EntityTypeMapping TypeName="KitapSatisDBModel.yayinevi">
+        <MappingFragment StoreEntitySet="yayinevi">
+          <ScalarProperty Name="yayineviAdi" ColumnName="yayineviAdi" />
+          <ScalarProperty Name="yayineviId" ColumnName="yayineviId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
